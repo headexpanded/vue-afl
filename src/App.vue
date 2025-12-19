@@ -12,8 +12,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>vue-afl</h1>
+  <h1><span translate="no">vue-afl</span></h1>
   <LadderTable v-if="showClub === false" />
 </template>
 
-<style scoped></style>
+<style scoped>
+h1 span {
+  color: var(--clr-accent-primary);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.1rem;
+  padding: 24px;
+  text-align: center;
+}
+</style>
