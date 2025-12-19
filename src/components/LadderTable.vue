@@ -3,7 +3,7 @@
     <thead>
       <tr class="table-header">
         <th>#</th>
-        <th>Club</th>
+        <th class="club-name">Club</th>
         <th>P</th>
         <th>W</th>
         <th>L</th>
@@ -54,19 +54,20 @@ const showClub = () => {
 <style scoped>
 table {
   width: 90vw;
-}
-thead {
-  background-color: #1d18bc;
-  color: white;
-  height: 40px;
-}
 
-td {
-  text-align: center;
-}
+  thead {
+    background-color: #1d18bc;
+    color: white;
+    height: 40px;
+  }
 
-.club-name {
-  padding-left: 8px;
-  text-align: left;
+  td {
+    text-align: center;
+  }
+
+  .club-name {
+    padding-left: 8px;
+    text-align: left;
+  }
 }
 </style>
