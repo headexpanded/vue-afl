@@ -14,7 +14,7 @@
     <tbody>
       <tr v-for="club in store.ladder" :key="club.id" @click="showClub">
         <td>{{ club.rank }}</td>
-        <td>{{ club.name }}</td>
+        <td class="club-name">{{ club.name }}</td>
         <td>{{ club.played }}</td>
         <td>{{ club.wins }}</td>
         <td>{{ club.losses }}</td>
@@ -56,8 +56,17 @@ table {
   width: 90vw;
 }
 thead {
-  background-color: blue;
+  background-color: #1d18bc;
   color: white;
   height: 40px;
+}
+
+td {
+  text-align: center;
+}
+
+.club-name {
+  padding-left: 8px;
+  text-align: left;
 }
 </style>
