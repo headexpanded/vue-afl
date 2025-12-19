@@ -21,7 +21,6 @@ export const useLadderStore = defineStore('ladder-store', () => {
 
       const data: LadderApiResponse = await response.json()
       ladder.value = data.standings
-      console.log('LadderTable: ', ladder.value)
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message)
