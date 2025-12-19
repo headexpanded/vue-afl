@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* fonts */
+  --ff-primary: "Inter", sans-serif;
+  --ff-body: var(--ff-primary);
+  --ff-accent:var(--ff-primary);
+
+  /* font weights */
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  /* font sizes */
+  --fs-200: 0.5rem;
+  --fs-300: 0.75rem;
+  --fs-400: 1rem;
+  --fs-600: 1.5rem;
+
+  /* colors */
+  --clr-accent-primary: hsl(242, 77%, 42%);
+  --clr-accent-secondary: hsl(0, 0%, 92%);
+  --clr-text-dark: hsl(0, 0%, 10%);
+  --clr-text-light: hsl(0, 0%, 100%);
+  --clr-finals: hsl(0, 100%, 50%);
+  --clr-top-four: hsl(0, 0%, 50%);
+
+  /* sizes */
+
+
+  /* standard span width for data */
+  --DataSpanWidth: clamp(6vw, 10px, 20px);
+}
+
+html {
+  scroll-behavior: smooth;
+  user-select: none;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  font-family: var(--ff-body), sans-serif;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
