@@ -1,4 +1,4 @@
-export type Team = {
+export type Club = {
   name: string
   debut: number
   retirement: number
@@ -6,5 +6,3 @@ export type Team = {
   abbrev: string
   logo: string
 }
-
-export type Teams = Team[]
