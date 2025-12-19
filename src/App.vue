@@ -1,11 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LadderTable from '@/components/LadderTable.vue'
+import { useLadderStore } from '@/stores/ladder-store.ts'
+import { onMounted, ref } from 'vue'
+
+const store = useLadderStore()
+const showClub = ref(false)
+
+onMounted(() => {
+  store.getLadder()
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>vue-afl</h1>
+  <LadderTable v-if="showClub === false" />
 </template>
 
 <style scoped></style>
