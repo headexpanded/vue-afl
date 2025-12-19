@@ -17,11 +17,16 @@ onMounted(() => {
 </template>
 
 <style scoped>
-h1 span {
-  color: var(--clr-accent-primary);
-  font-weight: var(--fw-bold);
-  letter-spacing: -0.1rem;
-  padding: 24px;
-  text-align: center;
+h1 {
+  margin: 16px 0;
+
+  span {
+    color: var(--clr-accent-primary);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.1rem;
+    padding-left: 24px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
 }
 </style>

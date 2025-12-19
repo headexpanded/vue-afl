@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="club in store.ladder" :key="club.id" @click="showClub">
+      <tr v-for="club in store.ladder" :key="club.id" class="club-row" @click="showClub">
         <td class="club-rank">{{ club.rank }}</td>
         <td class="club-name">{{ club.name }}</td>
         <td class="club-points">{{ club.pts }}</td>
@@ -113,6 +113,11 @@ table {
     width: var(--DataSpanWidth);
     text-align: left;
     padding-left: 16px;
+  }
+
+  .club-row:hover {
+    cursor: pointer;
+    background-color: var(--clr-accent-secondary);
   }
 
   .club-ladder-header {
