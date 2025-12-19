@@ -15,5 +15,3 @@ export type Standing = {
   for: number
   behinds_against: number
 }
-
-export type Standings = Standing[]
