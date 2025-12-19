@@ -1,12 +1,16 @@
-import type { Standings } from '@/types/Standings.ts'
+import type { Standing } from '@/types/Standing.ts'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+
+interface LadderApiResponse {
+  standings: Standing[]
+}
 
 export const useLadderStore = defineStore('ladder-store', () => {
 
   const URL = import.meta.env.VITE_LADDER_API_URL
 
-  const ladder = ref<Standings>([])
+  const ladder = ref<Standing[]>([])
   const getLadder = async () => {
     try {
       const response = await fetch(URL)
@@ -15,7 +19,8 @@ export const useLadderStore = defineStore('ladder-store', () => {
         return
       }
 
-      ladder.value = await response.json()
+      const data: LadderApiResponse = await response.json()
+      ladder.value = data.standings
       console.log('Ladder: ', ladder.value)
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -27,6 +32,7 @@ export const useLadderStore = defineStore('ladder-store', () => {
   }
 
   return {
-    getLadder
+    getLadder,
+    ladder
   }
 })
