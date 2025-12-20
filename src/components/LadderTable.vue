@@ -2,33 +2,35 @@
   <table class="center">
     <thead>
       <tr>
-        <th class="club-rank">#</th>
-        <th class="club-name">Club</th>
-        <th class="club-points">Pts</th>
-        <th class="club-played">P</th>
-        <th class="club-wins">W</th>
-        <th class="club-losses">L</th>
-        <th class="club-draws">D</th>
-        <th class="club-percentage">%</th>
+        <th class="team-rank">#</th>
+        <th class="team-rank">#</th>
+        <th class="team-name">Club</th>
+        <th class="team-points">Pts</th>
+        <th class="team-played">P</th>
+        <th class="team-wins">W</th>
+        <th class="team-losses">L</th>
+        <th class="team-draws">D</th>
+        <th class="team-percentage">%</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="club in store.ladder" :key="club.id" class="club-row" @click="showClub">
-        <td class="club-rank">{{ club.rank }}</td>
-        <td class="club-name">{{ club.name }}</td>
-        <td class="club-points">{{ club.pts }}</td>
-        <td class="club-played">{{ club.played }}</td>
-        <td class="club-wins">{{ club.wins }}</td>
-        <td class="club-losses">{{ club.losses }}</td>
-        <td class="club-draws">{{ club.draws }}</td>
-        <td class="club-percentage">{{ club.percentage }}</td>
+      <tr v-for="team in ladderStore.ladder" :key="team.id" class="team-row" @click="showTeam">
+        <td class="team-rank">{{ team.rank }}</td>
+        <td class="team-rank">{{ logo }}</td>
+        <td class="team-name">{{ team.name }}</td>
+        <td class="team-points">{{ team.pts }}</td>
+        <td class="team-played">{{ team.played }}</td>
+        <td class="team-wins">{{ team.wins }}</td>
+        <td class="team-losses">{{ team.losses }}</td>
+        <td class="team-draws">{{ team.draws }}</td>
+        <td class="team-percentage">{{ team.percentage }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 <script setup lang="ts">
 import { useLadderStore } from '@/stores/ladder-store.ts'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
 /* ============ PROPS ============ */
 
@@ -36,19 +38,23 @@ import { onMounted } from 'vue'
 
 /* ========= LOCAL SCOPE ========= */
 
-const store = useLadderStore()
+const ladderStore = useLadderStore()
 
 /* ============= REFS ============ */
+
+const logo = computed(() => {
+  return 'logo'
+})
 
 /* ============ HOOKS ============ */
 
 onMounted(() => {
-  store.getLadder()
+  ladderStore.getLadder()
 })
 
 /* =========== METHODS =========== */
 
-const showClub = () => {
+const showTeam = () => {
   console.log('Click')
 }
 </script>
@@ -67,60 +73,60 @@ table {
 
   tr {
     font-size: clamp(0.75rem, 2vw, 1.5rem);
-    height: 32px;
+    height: 1.5rem;
   }
 
   td {
     text-align: center;
   }
 
-  .club-rank {
+  .team-rank {
     width: clamp(4vw, 10px, 24px);
   }
 
-  .club-name {
+  .team-name {
     padding: 0 12px 0 12px;
     text-align: left;
     width: clamp(22vw, 100px, 240px);
   }
 
-  .club-points {
+  .team-points {
     width: var(--DataSpanWidth);
     padding-right: 12px;
   }
 
-  .club-played {
+  .team-played {
     width: var(--DataSpanWidth);
     padding-right: 12px;
   }
 
-  .club-wins {
+  .team-wins {
     width: var(--DataSpanWidth);
     padding-right: 12px;
   }
 
-  .club-draws {
+  .team-draws {
     width: var(--DataSpanWidth);
     padding-right: 12px;
   }
 
-  .club-losses {
+  .team-losses {
     width: var(--DataSpanWidth);
     padding-right: 12px;
   }
 
-  .club-percentage {
+  .team-percentage {
     width: var(--DataSpanWidth);
     text-align: left;
     padding-left: 16px;
   }
 
-  .club-row:hover {
+  .team-row:hover {
     cursor: pointer;
     background-color: var(--clr-accent-secondary);
   }
 
-  .club-ladder-header {
+  .team-ladder-header {
     align-items: center;
     background-color: var(--clr-accent-primary);
     display: flex;
