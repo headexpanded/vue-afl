@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th class="team-rank">#</th>
-        <th class="team-rank">#</th>
+        <th class="team-logo-header"></th>
         <th class="team-name">Club</th>
         <th class="team-points">Pts</th>
         <th class="team-played">P</th>
@@ -16,21 +16,23 @@
     <tbody>
       <tr v-for="team in ladderStore.ladder" :key="team.id" class="team-row" @click="showTeam">
         <td class="team-rank">{{ team.rank }}</td>
-        <td class="team-rank">{{ logo }}</td>
+        <td class="team-logo">
+          <img v-if="getLogo(team.id)" :src="getLogo(team.id)" alt="Team logo" class="team-logo" />
+        </td>
         <td class="team-name">{{ team.name }}</td>
-        <td class="team-points">{{ team.pts }}</td>
-        <td class="team-played">{{ team.played }}</td>
-        <td class="team-wins">{{ team.wins }}</td>
-        <td class="team-losses">{{ team.losses }}</td>
-        <td class="team-draws">{{ team.draws }}</td>
-        <td class="team-percentage">{{ team.percentage }}</td>
+        <td class="team-data">{{ team.pts }}</td>
+        <td class="team-data">{{ team.played }}</td>
+        <td class="team-data">{{ team.wins }}</td>
+        <td class="team-data">{{ team.losses }}</td>
+        <td class="team-data">{{ team.draws }}</td>
+        <td class="team-data">{{ team.percentage }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 <script setup lang="ts">
 import { useLadderStore } from '@/stores/ladder-store.ts'
-import { computed, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
 /* ============ PROPS ============ */
 
@@ -42,10 +44,6 @@ const ladderStore = useLadderStore()
 
 /* ============= REFS ============ */
 
-const logo = computed(() => {
-  return 'logo'
-})
-
 /* ============ HOOKS ============ */
 
 onMounted(() => {
@@ -54,6 +52,10 @@ onMounted(() => {
 
 /* =========== METHODS =========== */
 
+const getLogo = (id: number): string => {
+  return new URL(`../logos/${id}.png`, import.meta.url).href
+}
+
 const showTeam = () => {
   console.log('Click')
 }
@@ -61,18 +63,18 @@ const showTeam = () => {
 
 <style scoped>
 table {
+  font-size: clamp(0.75rem, 2vw, 1.5rem);
   margin-left: auto;
   margin-right: auto;
   width: 90vw;
 
   thead {
-    background-color: #1d18bc;
+    background-color: var(--clr-accent-primary);
     color: white;
     height: 40px;
   }
 
   tr {
-    font-size: clamp(0.75rem, 2vw, 1.5rem);
     height: 1.5rem;
   }
 
@@ -80,8 +82,26 @@ table {
     text-align: center;
   }
 
+  .team-logo-header {
+    width: clamp(3vw, 10px, 24px);
+  }
+
   .team-rank {
     width: clamp(4vw, 10px, 24px);
+  }
+
+  .team-logo {
+    align-items: center;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    width: clamp(4vw, 10px, 24px);
+  }
+
+  img.team-logo {
+    display: block;
+    height: 36px;
+    width: 36px;
   }
 
   .team-name {
@@ -90,35 +110,32 @@ table {
     width: clamp(22vw, 100px, 240px);
   }
 
+  .team-data {
+    width: var(--DataSpanWidth);
+  }
+
   .team-points {
     width: var(--DataSpanWidth);
-    padding-right: 12px;
   }
 
   .team-played {
     width: var(--DataSpanWidth);
-    padding-right: 12px;
   }
 
   .team-wins {
     width: var(--DataSpanWidth);
-    padding-right: 12px;
   }
 
   .team-draws {
     width: var(--DataSpanWidth);
-    padding-right: 12px;
   }
 
   .team-losses {
     width: var(--DataSpanWidth);
-    padding-right: 12px;
   }
 
   .team-percentage {
     width: var(--DataSpanWidth);
-    text-align: left;
-    padding-left: 16px;
   }
 
   .team-row:hover {

@@ -17,9 +17,6 @@ onMounted(() => {
 <template>
   <h1><span translate="no">AFL Ladder: No Ads!</span></h1>
   <LadderTable v-if="showClub === false" />
-  <div v-for="team in teamStore.teams" :key="team.id">
-    <div>{{ team }}</div>
-  </div>
 </template>
 
 <style scoped>
