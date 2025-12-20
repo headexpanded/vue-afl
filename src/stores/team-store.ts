@@ -1,16 +1,16 @@
-import type { Club } from '@/types/Club.ts'
+import type { Team } from '@/types/Team.ts'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-interface ClubsApiResponse {
-  clubs: Club[]
+interface TeamsApiResponse {
+  teams: Team[]
 }
 
-export const useClubStore = defineStore('club-store', () => {
+export const useTeamStore = defineStore('team-store', () => {
   const URL = import.meta.env.VITE_CLUB_API_URL
-  const clubs = ref<Club[]>([])
+  const teams = ref<Team[]>([])
 
-  const getClubs = async () => {
+  const getTeams = async () => {
     try {
       const response = await fetch(URL)
       if (!response.ok) {
@@ -18,8 +18,10 @@ export const useClubStore = defineStore('club-store', () => {
         return
       }
 
-      const data: ClubsApiResponse = await response.json()
-      clubs.value = data.clubs
+      const data: TeamsApiResponse = await response.json()
+      console.log("Data: ", data)
+      teams.value = data.teams
+      console.log('Teams: ', teams.value)
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message)
@@ -30,7 +32,7 @@ export const useClubStore = defineStore('club-store', () => {
   }
 
   return {
-    getClubs,
-    clubs,
+    getTeams,
+    teams,
   }
 })

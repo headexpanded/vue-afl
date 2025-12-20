@@ -1,4 +1,4 @@
-export type Club = {
+export type Team = {
   name: string
   debut: number
   retirement: number
