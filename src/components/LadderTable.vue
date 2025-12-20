@@ -71,7 +71,7 @@ table {
   thead {
     background-color: var(--clr-accent-primary);
     color: white;
-    height: 40px;
+    height: 48px;
   }
 
   tr {
