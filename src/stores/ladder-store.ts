@@ -7,7 +7,6 @@ interface LadderApiResponse {
 }
 
 export const useLadderStore = defineStore('ladder-store', () => {
-
   const URL = import.meta.env.VITE_LADDER_API_URL
 
   const ladder = ref<Standing[]>([])
@@ -32,6 +31,6 @@ export const useLadderStore = defineStore('ladder-store', () => {
 
   return {
     getLadder,
-    ladder
+    ladder,
   }
 })
