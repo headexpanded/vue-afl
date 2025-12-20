@@ -19,7 +19,7 @@ export const useLadderStore = defineStore('ladder-store', () => {
       }
 
       const data: LadderApiResponse = await response.json()
-      ladder.value = data.standings.sort((a, b) => b.rank - a.rank)
+      ladder.value = data.standings.sort((a, b) => a.rank - b.rank)
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message)

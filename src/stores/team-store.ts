@@ -31,8 +31,13 @@ export const useTeamStore = defineStore('team-store', () => {
     }
   }
 
+  const getTeam = (id: number): Team | null => {
+    return teams.value.find((team) => team.id === id) ?? null
+  }
+
   return {
     getTeams,
+    getTeam,
     teams,
   }
 })

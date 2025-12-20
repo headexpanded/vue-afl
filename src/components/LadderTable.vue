@@ -1,5 +1,5 @@
 <template>
-  <table class="center">
+  <table>
     <thead>
       <tr>
         <th class="team-rank">#</th>
@@ -14,7 +14,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="team in ladderStore.ladder" :key="team.id" class="team-row" @click="showTeam">
+      <tr
+        v-for="team in ladderStore.ladder"
+        :key="team.id"
+        class="team-row"
+        @click="showTeam(team.id)"
+      >
         <td class="team-rank">{{ team.rank }}</td>
         <td class="team-logo">
           <img v-if="getLogo(team.id)" :src="getLogo(team.id)" alt="Team logo" class="team-logo" />
@@ -32,11 +37,14 @@
 </template>
 <script setup lang="ts">
 import { useLadderStore } from '@/stores/ladder-store.ts'
-import { onMounted } from 'vue'
 
 /* ============ PROPS ============ */
 
 /* ============ EMITS ============ */
+
+const emit = defineEmits<{
+  showTeam: [teamId: number]
+}>()
 
 /* ========= LOCAL SCOPE ========= */
 
@@ -46,18 +54,14 @@ const ladderStore = useLadderStore()
 
 /* ============ HOOKS ============ */
 
-onMounted(() => {
-  ladderStore.getLadder()
-})
-
 /* =========== METHODS =========== */
 
 const getLogo = (id: number): string => {
   return new URL(`../logos/${id}.png`, import.meta.url).href
 }
 
-const showTeam = () => {
-  console.log('Click')
+const showTeam = (teamId: number) => {
+  emit('showTeam', teamId)
 }
 </script>
 
